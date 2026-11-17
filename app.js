@@ -31,3 +31,20 @@ if(L){
   var h='<div class="box full"><h3>Loja física</h3><p>Avenida José Walter, 90, Vitória Régia<br>Rio Verde, GO</p><iframe class="map" loading="lazy" title="Mapa da loja" src="'+MAPA_EMBED+'"></iframe><a class="btn" target="_blank" rel="noopener" href="'+MAPA+'">Abrir no Google Maps</a></div>';
   ONLINE.forEach(function(o){if(!o.u)return;h+='<div class="box"><h3>'+o.t+'</h3><p>'+o.d+'</p><a class="btn" target="_blank" rel="noopener" href="'+o.u+'">'+o.b+'</a></div>';});
   L.innerHTML=h;}
+/* Contagem regressiva da promoção (18 a 30/11/2026, horário de Brasília) */
+(function(){
+  var w=document.getElementById("cdwrap"); if(!w)return;
+  var ini=new Date("2026-11-18T00:00:00-03:00").getTime(), fim=new Date("2026-11-30T23:59:59-03:00").getTime();
+  function z(n){return n<10?"0"+n:""+n}
+  function tick(){
+    var n=Date.now(), alvo, txt;
+    if(n<ini){alvo=ini;txt="A promoção começa em";}
+    else if(n<=fim){alvo=fim;txt="A promoção termina em";}
+    else{w.style.display="none";return;}
+    var d=alvo-n, dd=Math.floor(d/864e5), hh=Math.floor(d%864e5/36e5), mm=Math.floor(d%36e5/6e4), ss=Math.floor(d%6e4/1e3);
+    document.getElementById("cd-d").textContent=z(dd);document.getElementById("cd-h").textContent=z(hh);
+    document.getElementById("cd-m").textContent=z(mm);document.getElementById("cd-s").textContent=z(ss);
+    document.getElementById("cdlabel").textContent=txt;
+  }
+  tick();setInterval(tick,1000);
+})();
