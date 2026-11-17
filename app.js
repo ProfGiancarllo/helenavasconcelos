@@ -8,8 +8,20 @@ var MSG = (document.body.getAttribute("data-msg")||"Olá! Vim pelo site da Helen
 function link(c){return "https://wa.me/"+c.fone+"?text="+encodeURIComponent(MSG);}
 function track(c){try{if(window.fbq)fbq("track","Contact",{contact:c.nome});}catch(e){}}
 function sorteio(){return CONTATOS[Math.floor(Math.random()*CONTATOS.length)];}
+/* Botão principal: abre uma janela com os dois atendentes para o cliente escolher. */
+var modal=document.createElement("div");modal.className="modal";modal.setAttribute("hidden","");
+modal.innerHTML='<div class="sheet"><button class="x" aria-label="Fechar">×</button><h3>Com quem você quer falar?</h3><p>Escolha o atendimento pelo WhatsApp.</p><div class="opts"></div></div>';
+document.body.appendChild(modal);
+var opts=modal.querySelector(".opts");
+CONTATOS.forEach(function(c){
+  var b=document.createElement("a");b.className="btn opt";b.target="_blank";b.rel="noopener";b.href=link(c);
+  b.innerHTML='<span>'+c.nome+'</span><small>Chamar no WhatsApp</small>';
+  b.addEventListener("click",function(){track(c);});opts.appendChild(b);});
+function abre(){modal.removeAttribute("hidden");document.body.style.overflow="hidden";}
+function fecha(){modal.setAttribute("hidden","");document.body.style.overflow="";}
+modal.addEventListener("click",function(e){if(e.target===modal||e.target.className==="x")fecha();});
 document.querySelectorAll("[data-wa]").forEach(function(a){
-  a.addEventListener("click",function(e){e.preventDefault();var c=sorteio();track(c);window.location.href=link(c);});
+  a.addEventListener("click",function(e){e.preventDefault();abre();});
   a.setAttribute("href","#contato");
 });
 var box=document.getElementById("cards");

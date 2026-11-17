@@ -116,3 +116,15 @@ section#contato h2{font-size:clamp(34px,7vw,52px)}
 .benef div{background:var(--wine);color:#f3e4c8;border-radius:14px;padding:24px;text-align:center}
 .benef b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;color:var(--gold2);margin-bottom:6px}
 .step b{width:46px;height:46px;font-size:26px}
+
+.modal{position:fixed;inset:0;z-index:100;background:rgba(10,4,6,.7);display:flex;align-items:flex-end;justify-content:center}
+.modal[hidden]{display:none}
+.sheet{position:relative;background:var(--cream);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:28px 22px calc(26px + env(safe-area-inset-bottom));text-align:center}
+@media(min-width:600px){.modal{align-items:center}.sheet{border-radius:20px}}
+.sheet h3{font-size:32px;color:var(--wine);margin-bottom:4px}
+.sheet p{color:#6b5648;margin-bottom:18px}
+.sheet .x{position:absolute;right:14px;top:8px;background:none;border:0;font-size:34px;color:var(--wine);cursor:pointer;line-height:1}
+.opts{display:grid;gap:12px}
+.btn.opt{flex-direction:column;gap:2px;padding:16px 20px;border-radius:16px}
+.btn.opt span{font-size:21px}
+.btn.opt small{font-size:13px;font-weight:400;opacity:.92}
