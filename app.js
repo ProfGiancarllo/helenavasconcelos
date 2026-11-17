@@ -1,8 +1,7 @@
-/* Contatos: para adicionar o terceiro atendente, inclua uma linha abaixo. */
+/* Contatos de WhatsApp (dois atendentes). */
 var CONTATOS = [
   {nome:"Helena Vasconcelos", fone:"5564981019593"},
   {nome:"Ana Cláudia",        fone:"556421422290"}
-  /* ,{nome:"NOME", fone:"55DDNUMERO"} */
 ];
 var MSG = (document.body.getAttribute("data-msg")||"Olá! Vim pelo site da Helena Vasconcelos.");
 function link(c){return "https://wa.me/"+c.fone+"?text="+encodeURIComponent(MSG);}
